@@ -9,8 +9,14 @@ def get_links(url):
 
 if __name__ == '__main__':
 	import sys
-	for url	in sys.argv[1:]:
-		print('Links in ', url)
-		for num, link in enumerate(get_links(url), start = 1):
-			print(num, link)
-		print()
+	try:
+		if sys.argv[1]:
+			for url	in sys.argv[1:]:
+				print('Links in ', url)
+				for num, link in enumerate(get_links(url), start = 1):
+					print(num, link)
+				print()
+	except:
+		print('No have enough paraters!')
+		print('The usage:')
+		print('python beautifulsoup.py http://boingboing.net')
