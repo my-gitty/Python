@@ -2,7 +2,7 @@ fout = open('oops.dean', 'wt')
 print('Oops, I created a file.', file=fout)
 fout.close()
 
-# --------------------- OS ----------------------#
+# ------------------------------------ OS -------------------------------------#
 
 import os
 
@@ -50,7 +50,8 @@ os.chmod(name, 0o400)
 
 import stat
 os.chmod(name, stat.S_IRWXU)
-###################################################
+
+# ----------------- stat ---------------#
 """
 stat.S_IXOTH: 其他用户有执行权0o001
 stat.S_IWOTH: 其他用户有写权限0o002
@@ -70,7 +71,8 @@ stat.S_ISUID: 执行此文件其进程有效用户为文件所有者0o4000
 stat.S_IREAD: windows下设为只读
 stat.S_IWRITE: windows下取消只读
 """
-##################################################
+# ----------------- stat ---------------#
+
 
 # change the ower
 try:
@@ -101,12 +103,27 @@ os.chdir('.')
 # delete a dirctory
 os.rmdir('poem.dean')
 
+
+# ----------------- glob ---------------#
 import glob
 print(glob.glob('o*'))
+# ----------------- glob ---------------#
 
 
+# process id
+print(os.getpid())
 
-# --------------------- OS ----------------------#
+# get the current dirctory
+print(os.getcwd())
+
+
+# get user id
+os.getuid()
+
+# get group id
+os.getgid()
+
+# ------------------------------------ OS -------------------------------------#
 
 
 
