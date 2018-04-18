@@ -17,14 +17,15 @@ def fillUnivList(ulist, html):
 		# print(tr)
 		if isinstance(tr, bs4.element.Tag):
 			tds = tr('td') # ???
-			print(tds)
+			# print(tds)
 			ulist.append([tds[0].string.encode('utf-8'), tds[1].string.encode('utf-8'), tds[3].string.encode('utf-8')])
 
 def printUnivList(ulist, num):
-	print("{:^10}\t{:^6}\t\t\t{:^10}".format("Grade", "School", "Score"))
+	print("{:^10}\t{:^38}\t\t{:^20}".format("Grade", "School", "Score"))
 	for i in range(num):
 		u = ulist[i]
-		print("{:^10}\t{:^6}\t\t\t{:^10}".format(u[0], u[1], u[2]))
+		print("{0:^10}\t{1:^36}\t{2:^20}".format(u[0].decode("utf-8"), u[1].decode("utf-8"), u[2].decode("utf-8")))
+		#print(u[2])
 	
 	
 def main():
