@@ -35,7 +35,7 @@ def K_test():
     (train_data, test_data, train_targets, test_targets) = data_handle()
     num_val_samples = len(train_data) // k
     num_epochs = 500
-    all_scores = []
+    all_mae_histories = []
 
 
     for i in range(k):
@@ -53,14 +53,21 @@ def K_test():
             axis = 0)
 
         model = build_model(train_data)
-        model.fit(partial_train_data, partial_train_targets,
+        history = model.fit(partial_train_data, partial_train_targets,
+                validation_data = (val_data, val_targets),
                 epochs = num_epochs, batch_size = 1, verbose = 0)
+        
+        mae_history = history.history['val_mean_absolute_error']
+        all_mae_histories.append(mae_history)
 
-        val_mes, val_mae = model.evaluate(val_data, val_targets, verbose = 0)
-        all_scores.append(val_mae)
+    average_mae_histroy = [
+        np.mean([x[i] for x in all_mae_histories]) for i in range(num_epochs)]
 
-        print(all_scores)
-        print('mean all scores: ', np.mean(all_scores))
+    plt.plot(range(1, len(average_mae_histroy) + 1), average_mae_histroy)
+    plt.xlabel('Epochs')
+    plt.ylabel('Validation MAE')
+    plt.show()
+
 
 ##############################################################################
 
